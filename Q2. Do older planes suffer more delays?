@@ -1,0 +1,183 @@
+'''
+Q2. Do older planes suffer more delays? 
+Years used: 1995, 1999, 2003 and 2007
+Plane tailnumber used: N13113, N13624 and N14115
+An entire year of flight arrival/departure delays were used with a 4 year gap between each year chosen.
+Data is filtered for positive ArrDelay to retain flights that are delayed.
+'''
+
+import pandas as pd
+
+Plane_data = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\plane-data.csv')
+data_1995 = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\1995.csv.bz2')
+data_1999 = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\1999.csv.bz2')
+data_2003 = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\2003.csv.bz2')
+data_2007 = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\2007.csv.bz2')
+
+#Select 1st plane (N13113)
+Plane_data_1995_1st = pd.DataFrame(Plane_data, columns=['tailnum', 'model', 'year'])
+Plane_data_1995_1st = Plane_data_1995_1st[Plane_data_1995_1st['year'] == '1995']
+Plane_data_1995_1st = Plane_data_1995_1st.loc[Plane_data_1995_1st['tailnum'] == 'N13113']
+print(Plane_data_1995_1st)
+
+#Select 2nd plane (N13624)
+Plane_data_1995_2nd = pd.DataFrame(Plane_data, columns=['tailnum', 'model', 'year'])
+Plane_data_1995_2nd = Plane_data_1995_2nd[Plane_data_1995_2nd['year'] == '1995']
+Plane_data_1995_2nd = Plane_data_1995_2nd.loc[Plane_data_1995_2nd['tailnum'] == 'N13624']
+print(Plane_data_1995_2nd)
+
+#Select 3rd plane (N14115)
+Plane_data_1995_3rd = pd.DataFrame(Plane_data, columns=['tailnum', 'model', 'year'])
+Plane_data_1995_3rd = Plane_data_1995_3rd[Plane_data_1995_3rd['year'] == '1995']
+Plane_data_1995_3rd = Plane_data_1995_3rd.loc[Plane_data_1995_3rd['tailnum'] == 'N14115']
+print(Plane_data_1995_3rd)
+
+'''
+Arrival Delay
+'''
+##Count of arrival delays for 1st plane in 1995 (N13113)
+Number_of_arrival_delays_1995_1st = pd.DataFrame(data_1995, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_1995_1st = Number_of_arrival_delays_1995_1st[Number_of_arrival_delays_1995_1st['TailNum'] == 'N13113']
+Number_of_arrival_delays_1995_1st = Number_of_arrival_delays_1995_1st[Number_of_arrival_delays_1995_1st['ArrDelay'] > 0]
+print(Number_of_arrival_delays_1995_1st)
+
+##Count of arrival delays for 2nd plane in 1995 (N13624)
+Number_of_arrival_delays_1995_2nd = pd.DataFrame(data_1995, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_1995_2nd = Number_of_arrival_delays_1995_2nd[Number_of_arrival_delays_1995_2nd['TailNum'] == 'N13624']
+Number_of_arrival_delays_1995_2nd = Number_of_arrival_delays_1995_2nd[Number_of_arrival_delays_1995_2nd['ArrDelay'] > 0]
+print(Number_of_arrival_delays_1995_2nd)
+
+##Count of arrival delays for 3rd plane in 1995 (N14115)
+Number_of_arrival_delays_1995_3rd = pd.DataFrame(data_1995, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_1995_3rd = Number_of_arrival_delays_1995_3rd[Number_of_arrival_delays_1995_3rd['TailNum'] == 'N14115']
+Number_of_arrival_delays_1995_3rd = Number_of_arrival_delays_1995_3rd[Number_of_arrival_delays_1995_3rd['ArrDelay'] > 0]
+print(Number_of_arrival_delays_1995_3rd)
+
+###Count of arrival delays for 1st plane in 1999 (N13113)
+Number_of_arrival_delays_1999_1st = pd.DataFrame(data_1999, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_1999_1st = Number_of_arrival_delays_1999_1st[Number_of_arrival_delays_1999_1st['TailNum'] == 'N13113']
+Number_of_arrival_delays_1999_1st = Number_of_arrival_delays_1999_1st[Number_of_arrival_delays_1999_1st['ArrDelay'] > 0]
+print(Number_of_arrival_delays_1999_1st)
+
+###Count of arrival delays for 2nd plane in 1999 (N13624)
+Number_of_arrival_delays_1999_2nd = pd.DataFrame(data_1999, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_1999_2nd = Number_of_arrival_delays_1999_2nd[Number_of_arrival_delays_1999_2nd['TailNum'] == 'N13624']
+Number_of_arrival_delays_1999_2nd = Number_of_arrival_delays_1999_2nd[Number_of_arrival_delays_1999_2nd['ArrDelay'] > 0]
+print(Number_of_arrival_delays_1999_2nd)
+
+###Count of arrival delays for 3rd plane in 1999 (N14115)
+Number_of_arrival_delays_1999_3rd = pd.DataFrame(data_1999, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_1999_3rd = Number_of_arrival_delays_1999_3rd[Number_of_arrival_delays_1999_3rd['TailNum'] == 'N14115']
+Number_of_arrival_delays_1999_3rd = Number_of_arrival_delays_1999_3rd[Number_of_arrival_delays_1999_3rd['ArrDelay'] > 0]
+print(Number_of_arrival_delays_1999_3rd)
+
+###Count of arrival delays for 1st plane in 2003 (N13113)
+Number_of_arrival_delays_2003_1st = pd.DataFrame(data_2003, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_2003_1st = Number_of_arrival_delays_2003_1st[Number_of_arrival_delays_2003_1st['TailNum'] == 'N13113']
+Number_of_arrival_delays_2003_1st = Number_of_arrival_delays_2003_1st[Number_of_arrival_delays_2003_1st['ArrDelay'] > 0]
+print(Number_of_arrival_delays_2003_1st)
+
+###Count of arrival delays for 2nd plane in 2003 (N13624)
+Number_of_arrival_delays_2003_2nd = pd.DataFrame(data_2003, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_2003_2nd = Number_of_arrival_delays_2003_2nd[Number_of_arrival_delays_2003_2nd['TailNum'] == 'N13624']
+Number_of_arrival_delays_2003_2nd = Number_of_arrival_delays_2003_2nd[Number_of_arrival_delays_2003_2nd['ArrDelay'] > 0]
+print(Number_of_arrival_delays_2003_2nd)
+
+###Count of arrival delays for 3rd plane in 2003 (N14115)
+Number_of_arrival_delays_2003_3rd = pd.DataFrame(data_2003, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_2003_3rd = Number_of_arrival_delays_2003_3rd[Number_of_arrival_delays_2003_3rd['TailNum'] == 'N14115']
+Number_of_arrival_delays_2003_3rd = Number_of_arrival_delays_2003_3rd[Number_of_arrival_delays_2003_3rd['ArrDelay'] > 0]
+print(Number_of_arrival_delays_2003_3rd)
+
+####Count of arrival delays for 1st plane in 2007 (N13113)
+Number_of_arrival_delays_2007_1st = pd.DataFrame(data_2007, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_2007_1st = Number_of_arrival_delays_2007_1st[Number_of_arrival_delays_2007_1st['TailNum'] == 'N13113']
+Number_of_arrival_delays_2007_1st = Number_of_arrival_delays_2007_1st[Number_of_arrival_delays_2007_1st['ArrDelay'] > 0]
+print(Number_of_arrival_delays_2007_1st)
+
+####Count of arrival delays for 2nd plane in 2007 (N13624)
+Number_of_arrival_delays_2007_2nd = pd.DataFrame(data_2007, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_2007_2nd = Number_of_arrival_delays_2007_2nd[Number_of_arrival_delays_2007_2nd['TailNum'] == 'N13624']
+Number_of_arrival_delays_2007_2nd = Number_of_arrival_delays_2007_2nd[Number_of_arrival_delays_2007_2nd['ArrDelay'] > 0]
+print(Number_of_arrival_delays_2007_2nd)
+
+####Count of arrival delays for 3rd plane in 2007 (N14115)
+Number_of_arrival_delays_2007_3rd = pd.DataFrame(data_2007, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_arrival_delays_2007_3rd = Number_of_arrival_delays_2007_3rd[Number_of_arrival_delays_2007_3rd['TailNum'] == 'N14115']
+Number_of_arrival_delays_2007_3rd = Number_of_arrival_delays_2007_3rd[Number_of_arrival_delays_2007_3rd['ArrDelay'] > 0]
+print(Number_of_arrival_delays_2007_3rd)
+
+'''
+Departure Delays
+'''
+##Count of depparture delays for 1st plane in 1995 (N13113)
+Number_of_departurel_delays_1995_1st = pd.DataFrame(data_1995, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_1995_1st = Number_of_departurel_delays_1995_1st[Number_of_departurel_delays_1995_1st['TailNum'] == 'N13113']
+Number_of_departurel_delays_1995_1st = Number_of_departurel_delays_1995_1st[Number_of_departurel_delays_1995_1st['DepDelay'] > 0]
+print(Number_of_departurel_delays_1995_1st)
+
+##Count of depparture delays for 2nd plane in 1995 (N13624)
+Number_of_departurel_delays_1995_2nd = pd.DataFrame(data_1995, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_1995_2nd = Number_of_departurel_delays_1995_2nd[Number_of_departurel_delays_1995_2nd['TailNum'] == 'N13624']
+Number_of_departurel_delays_1995_2nd = Number_of_departurel_delays_1995_2nd[Number_of_departurel_delays_1995_2nd['DepDelay'] > 0]
+print(Number_of_departurel_delays_1995_2nd)
+
+##Count of depparture delays for 3rd plane in 1995 (N14115)
+Number_of_departurel_delays_1995_3rd = pd.DataFrame(data_1995, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_1995_3rd = Number_of_departurel_delays_1995_3rd[Number_of_departurel_delays_1995_3rd['TailNum'] == 'N14115']
+Number_of_departurel_delays_1995_3rd = Number_of_departurel_delays_1995_3rd[Number_of_departurel_delays_1995_3rd['DepDelay'] > 0]
+print(Number_of_departurel_delays_1995_3rd)
+
+###Count of depparture delays for 1st plane in 1999 (N13113)
+Number_of_departurel_delays_1999_1st = pd.DataFrame(data_1999, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_1999_1st = Number_of_departurel_delays_1999_1st[Number_of_departurel_delays_1999_1st['TailNum'] == 'N13113']
+Number_of_departurel_delays_1999_1st = Number_of_departurel_delays_1999_1st[Number_of_departurel_delays_1999_1st['DepDelay'] > 0]
+print(Number_of_departurel_delays_1999_1st)
+
+###Count of depparture delays for 2nd plane in 1999 (N13624)
+Number_of_departurel_delays_1999_2nd = pd.DataFrame(data_1999, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_1999_2nd = Number_of_departurel_delays_1999_2nd[Number_of_departurel_delays_1999_2nd['TailNum'] == 'N13624']
+Number_of_departurel_delays_1999_2nd = Number_of_departurel_delays_1999_2nd[Number_of_departurel_delays_1999_2nd['DepDelay'] > 0]
+print(Number_of_departurel_delays_1999_2nd)
+
+###Count of depparture delays for 3rd plane in 1999 (N14115)
+Number_of_departurel_delays_1999_3rd = pd.DataFrame(data_1999, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_1999_3rd = Number_of_departurel_delays_1999_3rd[Number_of_departurel_delays_1999_3rd['TailNum'] == 'N14115']
+Number_of_departurel_delays_1999_3rd = Number_of_departurel_delays_1999_3rd[Number_of_departurel_delays_1999_3rd['DepDelay'] > 0]
+print(Number_of_departurel_delays_1999_3rd)
+
+###Count of depparture delays for 1st plane in 2003 (N13113)
+Number_of_departurel_delays_2003_1st = pd.DataFrame(data_2003, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_2003_1st = Number_of_departurel_delays_2003_1st[Number_of_departurel_delays_2003_1st['TailNum'] == 'N13113']
+Number_of_departurel_delays_2003_1st = Number_of_departurel_delays_2003_1st[Number_of_departurel_delays_2003_1st['DepDelay'] > 0]
+print(Number_of_departurel_delays_2003_1st)
+
+###Count of depparture delays for 2nd plane in 2003 (N13624)
+Number_of_departurel_delays_2003_2nd = pd.DataFrame(data_2003, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_2003_2nd = Number_of_departurel_delays_2003_2nd[Number_of_departurel_delays_2003_2nd['TailNum'] == 'N13624']
+Number_of_departurel_delays_2003_2nd = Number_of_departurel_delays_2003_2nd[Number_of_departurel_delays_2003_2nd['DepDelay'] > 0]
+print(Number_of_departurel_delays_2003_2nd)
+
+###Count of depparture delays for 3rd plane in 2003 (N14115)
+Number_of_departurel_delays_2003_3rd = pd.DataFrame(data_2003, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_2003_3rd = Number_of_departurel_delays_2003_3rd[Number_of_departurel_delays_2003_3rd['TailNum'] == 'N14115']
+Number_of_departurel_delays_2003_3rd = Number_of_departurel_delays_2003_3rd[Number_of_departurel_delays_2003_3rd['DepDelay'] > 0]
+print(Number_of_departurel_delays_2003_3rd)
+
+####Count of depparture delays for 1st plane in 2007 (N13113)
+Number_of_departurel_delays_2007_1st = pd.DataFrame(data_2007, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_2007_1st = Number_of_departurel_delays_2007_1st[Number_of_departurel_delays_2007_1st['TailNum'] == 'N13113']
+Number_of_departurel_delays_2007_1st = Number_of_departurel_delays_2007_1st[Number_of_departurel_delays_2007_1st['DepDelay'] > 0]
+print(Number_of_departurel_delays_2007_1st)
+
+####Count of depparture delays for 2nd plane in 2007 (N13624)
+Number_of_departurel_delays_2007_2nd = pd.DataFrame(data_2007, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_2007_2nd = Number_of_departurel_delays_2007_2nd[Number_of_departurel_delays_2007_2nd['TailNum'] == 'N13624']
+Number_of_departurel_delays_2007_2nd = Number_of_departurel_delays_2007_2nd[Number_of_departurel_delays_2007_2nd['DepDelay'] > 0]
+print(Number_of_departurel_delays_2007_2nd)
+
+####Count of depparture delays for 3rd plane in 2007 (N14115)
+Number_of_departurel_delays_2007_3rd = pd.DataFrame(data_2007, columns=['TailNum', 'Year', 'ArrDelay', 'DepDelay'])
+Number_of_departurel_delays_2007_3rd = Number_of_departurel_delays_2007_3rd[Number_of_departurel_delays_2007_3rd['TailNum'] == 'N14115']
+Number_of_departurel_delays_2007_3rd = Number_of_departurel_delays_2007_3rd[Number_of_departurel_delays_2007_3rd['DepDelay'] > 0]
+print(Number_of_departurel_delays_2007_3rd)
