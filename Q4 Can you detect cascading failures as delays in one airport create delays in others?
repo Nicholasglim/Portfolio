@@ -1,0 +1,83 @@
+'''
+Q4. Can you detect cascading failures as delays in one airport create delays in others? 
+Year used: 2008
+Date used: 31 Jan
+Plane tailnumber used: N847UA & N833UA and N314UA & N700LE
+Degree of delay: N847UA & N833UA (>1 hour) and N314UA & N700LE (< 1 hour)
+The subsequent flights in the destination of the 4 flights were used to check whether the degree of delays caused cascade failure of delay
+for the departing flights. A period of an hour was used to measure the number of on-time, delayed and cancelled flights caused by the delay.
+'''
+
+import pandas as pd
+
+data_2008 = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\2008.csv.bz2')
+
+#Filter for flights from BOS on 31st Jan
+USA2008_CascadeFailure = pd.DataFrame(data_2008, columns=['TailNum', 'Month', 'DayofMonth', 'Origin', 'Dest', 'CRSDepTime', 'DepTime', 'CRSArrTime', 'ArrTime', 'DepDelay', 'Cancelled'])
+USA2008_CascadeFailure = USA2008_CascadeFailure[USA2008_CascadeFailure['DepDelay'] >0]
+USA2008_CascadeFailure = USA2008_CascadeFailure[USA2008_CascadeFailure['Origin'] == 'BOS']
+USA2008_CascadeFailure = USA2008_CascadeFailure[USA2008_CascadeFailure['Month'] == 1]
+USA2008_CascadeFailure = USA2008_CascadeFailure[USA2008_CascadeFailure['DayofMonth'] == 31]
+print(USA2008_CascadeFailure)
+
+##Traced entry 234167 with TailNum N847UA flight from BOS to ORD to detect whether there was cascade failure delay in ORD airport which affected flights within 1 hour of N847UA CRSArrTime  
+USA2008_CascadeFailure_N847UA = pd.DataFrame(data_2008, columns=['TailNum', 'Month', 'DayofMonth', 'Origin', 'Dest', 'CRSDepTime', 'DepTime', 'CRSArrTime', 'ArrTime', 'DepDelay', 'Cancelled'])
+USA2008_CascadeFailure_N847UA = USA2008_CascadeFailure_N847UA[USA2008_CascadeFailure_N847UA['Origin'] == 'ORD']
+USA2008_CascadeFailure_N847UA = USA2008_CascadeFailure_N847UA[USA2008_CascadeFailure_N847UA['Month'] == 1]
+USA2008_CascadeFailure_N847UA = USA2008_CascadeFailure_N847UA[USA2008_CascadeFailure_N847UA['DayofMonth'] == 31]
+USA2008_CascadeFailure_N847UA = USA2008_CascadeFailure_N847UA[USA2008_CascadeFailure_N847UA['CRSDepTime'] >= 1615]
+USA2008_CascadeFailure_N847UA = USA2008_CascadeFailure_N847UA[USA2008_CascadeFailure_N847UA['CRSDepTime'] <= 1715]
+USA2008_CascadeFailure_N847UA.sort_values(by=['CRSDepTime'], inplace=True)
+print(USA2008_CascadeFailure_N847UA)
+
+##Count the number of DepDelays and cancelled flights in subsequent airport ORD
+USA2008_CascadeFailure_N847UA['DepDelay'].count()
+USA2008_CascadeFailure_N847UA['Cancelled'].value_counts()
+
+###Traced entry 234305 with TailNum N833UA flight from BOS to ORD to detect whether there was cascade failure delay in ORD  airport which affected flights within 1 hour of N833UA CRSArrTime  
+USA2008_CascadeFailure_N833UA = pd.DataFrame(data_2008, columns=['TailNum', 'Month', 'DayofMonth', 'Origin', 'Dest', 'CRSDepTime', 'DepTime', 'CRSArrTime', 'ArrTime', 'DepDelay', 'Cancelled'])
+USA2008_CascadeFailure_N833UA = USA2008_CascadeFailure_N833UA[USA2008_CascadeFailure_N833UA['Origin'] == 'ORD']
+USA2008_CascadeFailure_N833UA = USA2008_CascadeFailure_N833UA[USA2008_CascadeFailure_N833UA['Month'] == 1]
+USA2008_CascadeFailure_N833UA = USA2008_CascadeFailure_N833UA[USA2008_CascadeFailure_N833UA['DayofMonth'] == 31]
+USA2008_CascadeFailure_N833UA = USA2008_CascadeFailure_N833UA[USA2008_CascadeFailure_N833UA['CRSDepTime'] >= 1747]
+USA2008_CascadeFailure_N833UA = USA2008_CascadeFailure_N833UA[USA2008_CascadeFailure_N833UA['CRSDepTime'] <= 1847]
+USA2008_CascadeFailure_N833UA.sort_values(by=['CRSDepTime'], inplace=True)
+print(USA2008_CascadeFailure_N833UA)
+
+###Count the number of DepDelays and cancelled flights in subsequent airport ORD
+USA2008_CascadeFailure_N833UA['DepDelay'].count()
+USA2008_CascadeFailure_N833UA['Cancelled'].value_counts()
+
+####Traced entry 243398 with TailNum N314UA flight from BOS to ORD to detect whether there was cascade failure delay in ORD airport which affected flights within 1 hour of N314UA CRSArrTime  
+USA2008_CascadeFailure_N314UA = pd.DataFrame(data_2008, columns=['TailNum', 'Month', 'DayofMonth', 'Origin', 'Dest', 'CRSDepTime', 'DepTime', 'CRSArrTime', 'ArrTime', 'DepDelay', 'Cancelled'])
+USA2008_CascadeFailure_N314UA = USA2008_CascadeFailure_N314UA[USA2008_CascadeFailure_N314UA['Origin'] == 'ORD']
+USA2008_CascadeFailure_N314UA = USA2008_CascadeFailure_N314UA[USA2008_CascadeFailure_N314UA['Month'] == 1]
+USA2008_CascadeFailure_N314UA = USA2008_CascadeFailure_N314UA[USA2008_CascadeFailure_N314UA['DayofMonth'] == 31]
+USA2008_CascadeFailure_N314UA = USA2008_CascadeFailure_N314UA[USA2008_CascadeFailure_N314UA['CRSDepTime'] >= 1041]
+USA2008_CascadeFailure_N314UA = USA2008_CascadeFailure_N314UA[USA2008_CascadeFailure_N314UA['CRSDepTime'] <= 1141]
+USA2008_CascadeFailure_N314UA.sort_values(by=['CRSDepTime'], inplace=True)
+print(USA2008_CascadeFailure_N314UA)
+
+####Count the number of on-time flights, delayed flights and cancelled flights in subsequent airport DEN
+USA2008_CascadeFailure_N314UA[USA2008_CascadeFailure_N314UA['DepDelay'] <= 0].count()
+
+USA2008_CascadeFailure_N314UA[USA2008_CascadeFailure_N314UA['DepDelay'] > 0].count()
+
+USA2008_CascadeFailure_N314UA['Cancelled'].value_counts()
+
+#####Traced entry 416493 with TailNum N700LE flight from BOS to RDM to detect whether there was cascade failure delay in RDM airport which affected flights within 1 hour of N700LE CRSArrTime  
+USA2008_CascadeFailure_N4XDAA = pd.DataFrame(data_2008, columns=['TailNum', 'Month', 'DayofMonth', 'Origin', 'Dest', 'CRSDepTime', 'DepTime', 'CRSArrTime', 'ArrTime', 'DepDelay', 'Cancelled'])
+USA2008_CascadeFailure_N4XDAA = USA2008_CascadeFailure_N4XDAA[USA2008_CascadeFailure_N4XDAA['Origin'] == 'DFW']
+USA2008_CascadeFailure_N4XDAA = USA2008_CascadeFailure_N4XDAA[USA2008_CascadeFailure_N4XDAA['Month'] == 1]
+USA2008_CascadeFailure_N4XDAA = USA2008_CascadeFailure_N4XDAA[USA2008_CascadeFailure_N4XDAA['DayofMonth'] == 31]
+USA2008_CascadeFailure_N4XDAA = USA2008_CascadeFailure_N4XDAA[USA2008_CascadeFailure_N4XDAA['CRSDepTime'] >= 1915]
+USA2008_CascadeFailure_N4XDAA = USA2008_CascadeFailure_N4XDAA[USA2008_CascadeFailure_N4XDAA['CRSDepTime'] <= 2015]
+USA2008_CascadeFailure_N4XDAA.sort_values(by=['CRSDepTime'], inplace=True)
+print(USA2008_CascadeFailure_N4XDAA)
+
+#####Count the number of on-time flights, delayed flights and cancelled flights in subsequent airport DEN
+USA2008_CascadeFailure_N4XDAA[USA2008_CascadeFailure_N4XDAA['DepDelay'] <= 0].count()
+
+USA2008_CascadeFailure_N4XDAA[USA2008_CascadeFailure_N4XDAA['DepDelay'] > 0].count()
+
+USA2008_CascadeFailure_N4XDAA['Cancelled'].value_counts()
