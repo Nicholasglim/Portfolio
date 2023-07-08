@@ -1,0 +1,53 @@
+'''
+Q5. Use the available variables to construct a model that predicts delays
+Year used: 2007
+Analysis used: Simple linear regression
+Dependent variable: ArrDelay
+Independent variable: DepDelay
+Part 1: Regression Analysis model summary with imputer
+Part 2: Assumptions of linearity and normality
+'''
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+import seaborn as sns
+from sklearn.impute import SimpleImputer
+
+data_2007 = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\2007.csv.bz2')
+
+#X is independant variable and Y is dependent variable.
+X = data_2007['DepDelay'].values.reshape(-1, 1)
+Y = data_2007['ArrDelay'].values.reshape(-1, 1)
+
+#Using SimpleImputer to change NaN values to mean
+imp = SimpleImputer(missing_values=np.nan, strategy='mean')
+X = imp.fit_transform(X)
+Y = imp.fit_transform(Y)
+
+X = sm.add_constant(X)
+model = sm.OLS(Y, X)
+results = model.fit()
+
+#Linear Regression Analysis model summary
+print(results.summary())
+
+##Assumption: Linearity
+fig, ax = plt.subplots()
+ax.scatter(X[:, 1], Y)
+ax.plot(X[:, 1], results.predict(), 'r', label='Regression line')
+ax.legend()
+ax.set_xlabel('DepDelay')
+ax.set_ylabel('ArrDelay')
+ax.set_title('Scatterplot of ArrDelay by DepDelay')
+plt.show()
+
+##Assumption: Normality (Distribution observed is normally distributed), xlim was use to zoom in for a clearer view
+fig, ax = plt.subplots()
+sns.histplot(results.resid, bins=80, kde=True, ax=ax)
+ax.set_xlim(-100, 100)
+ax.set_title('Histogram of ArrDelay')
+ax.set_xlabel('Regression Standardised Residual')
+ax.set_ylabel('Density')
+plt.show()
