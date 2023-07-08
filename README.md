@@ -1,8 +1,8 @@
 ## Nicholasglim's Portfolio
 
-# [Project 1: ] ()
+# [Project 1: Data Expo 2009: Airline On Time Data] (https://github.com/Nicholasglim/Portfolio)
 
-This is a project I did for my programming coursework, whhere I answer 5 questions listed below.
+This is a project I did for my programming coursework, where I answer 5 questions listed below.
 
 1. When is the best time of day, day of the week, and time of year to fly to minimise delays?
 2. Do older planes suffer more delays?
@@ -11,3 +11,4 @@ This is a project I did for my programming coursework, whhere I answer 5 questio
 5. Use the available variables to construct a model that predicts delays
 
 * Data was taken from **Data Expo 2009: Airline on time data** dataset
+* Check it out on my branches
