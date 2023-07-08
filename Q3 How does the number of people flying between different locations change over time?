@@ -1,0 +1,539 @@
+'''
+Q3. How does the number of people flying between different locations change over time? 
+Years used: 1988, 1989, 1990, 1991 and 1992
+Airports used: LAX(West), JFK(East), DEN(South) and DWF(Central)
+Data was split into seasons to make processing faster and easier
+'''
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data_1988 = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\1988.csv.bz2')
+
+#Filter for 1988 Spring and filter for flights to/from LAX <-> JFK airport 
+df_1988_Spring_WE = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Spring_WE = df_1988_Spring_WE[(df_1988_Spring_WE['Month'] >= 3) & (df_1988_Spring_WE['Month'] <= 5)]
+df_1988_Spring_WE = df_1988_Spring_WE[df_1988_Spring_WE['Origin'] == 'LAX']
+df_1988_Spring_WE = df_1988_Spring_WE[df_1988_Spring_WE['Dest'] == 'JFK']
+print(df_1988_Spring_WE)
+
+df_1988_Spring_EW = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Spring_EW = df_1988_Spring_EW[(df_1988_Spring_EW['Month'] >= 3) & (df_1988_Spring_EW['Month'] <= 5)]
+df_1988_Spring_EW = df_1988_Spring_EW[df_1988_Spring_EW['Origin'] == 'JFK']
+df_1988_Spring_EW = df_1988_Spring_EW[df_1988_Spring_EW['Dest'] == 'LAX']
+print(df_1988_Spring_EW)
+
+#Filter for 1988 Spring and filter for flights to/from DFW <-> DEN airport 
+df_1988_Spring_SC = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Spring_SC = df_1988_Spring_SC[(df_1988_Spring_SC['Month'] >= 3) & (df_1988_Spring_SC['Month'] <= 5)]
+df_1988_Spring_SC = df_1988_Spring_SC[df_1988_Spring_SC['Origin'] == 'DFW']
+df_1988_Spring_SC = df_1988_Spring_SC[df_1988_Spring_SC['Dest'] == 'DEN']
+print(df_1988_Spring_SC)
+
+df_1988_Spring_CS = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Spring_CS = df_1988_Spring_CS[(df_1988_Spring_CS['Month'] >= 3) & (df_1988_Spring_CS['Month'] <= 5)]
+df_1988_Spring_CS = df_1988_Spring_CS[df_1988_Spring_CS['Origin'] == 'DEN']
+df_1988_Spring_CS = df_1988_Spring_CS[df_1988_Spring_CS['Dest'] == 'DFW']
+print(df_1988_Spring_CS)
+
+##Filter for 1988 Summer and filter for flights to/from LAX <-> JFK airport 
+df_1988_Summer_WE = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Summer_WE = df_1988_Summer_WE[(df_1988_Summer_WE['Month'] >= 6) & (df_1988_Summer_WE['Month'] <= 8)]
+df_1988_Summer_WE = df_1988_Summer_WE[df_1988_Summer_WE['Origin'] == 'LAX']
+df_1988_Summer_WE = df_1988_Summer_WE[df_1988_Summer_WE['Dest'] == 'JFK']
+print(df_1988_Summer_WE)
+
+df_1988_Summer_EW = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Summer_EW = df_1988_Summer_EW[(df_1988_Summer_EW['Month'] >= 6) & (df_1988_Summer_EW['Month'] <= 8)]
+df_1988_Summer_EW = df_1988_Summer_EW[df_1988_Summer_EW['Origin'] == 'JFK']
+df_1988_Summer_EW = df_1988_Summer_EW[df_1988_Summer_EW['Dest'] == 'LAX']
+print(df_1988_Summer_EW)
+
+##Filter for 1988 Summer and filter for flights to/from DFW <-> DEN airport 
+df_1988_Summer_SC = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Summer_SC = df_1988_Summer_SC[(df_1988_Summer_SC['Month'] >= 6) & (df_1988_Summer_SC['Month'] <= 8)]
+df_1988_Summer_SC = df_1988_Summer_SC[df_1988_Summer_SC['Origin'] == 'DFW']
+df_1988_Summer_SC = df_1988_Summer_SC[df_1988_Summer_SC['Dest'] == 'DEN']
+print(df_1988_Summer_SC)
+
+df_1988_Summer_CS = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Summer_CS = df_1988_Summer_CS[(df_1988_Summer_CS['Month'] >= 6) & (df_1988_Summer_CS['Month'] <= 8)]
+df_1988_Summer_CS = df_1988_Summer_CS[df_1988_Summer_CS['Origin'] == 'DEN']
+df_1988_Summer_CS = df_1988_Summer_CS[df_1988_Summer_CS['Dest'] == 'DFW']
+print(df_1988_Summer_CS)
+
+###Filter for 1988 Autumn and filter for flights to/from LAX <-> JFK airport 
+df_1988_Autumn_WE = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Autumn_WE = df_1988_Autumn_WE[(df_1988_Autumn_WE['Month'] >= 9) & (df_1988_Autumn_WE['Month'] <= 11)]
+df_1988_Autumn_WE = df_1988_Autumn_WE[df_1988_Autumn_WE['Origin'] == 'LAX']
+df_1988_Autumn_WE = df_1988_Autumn_WE[df_1988_Autumn_WE['Dest'] == 'JFK']
+print(df_1988_Autumn_WE)
+
+df_1988_Autumn_EW = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Autumn_EW = df_1988_Autumn_EW[(df_1988_Autumn_EW['Month'] >= 9) & (df_1988_Autumn_EW['Month'] <= 11)]
+df_1988_Autumn_EW = df_1988_Autumn_EW[df_1988_Autumn_EW['Origin'] == 'JFK']
+df_1988_Autumn_EW = df_1988_Autumn_EW[df_1988_Autumn_EW['Dest'] == 'LAX']
+print(df_1988_Autumn_EW)
+
+###Filter for 1988 Autumn and filter for flights to/from DFW <-> DEN airport 
+df_1988_Autumn_SC = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Autumn_SC = df_1988_Autumn_SC[(df_1988_Autumn_SC['Month'] >= 9) & (df_1988_Autumn_SC['Month'] <= 11)]
+df_1988_Autumn_SC = df_1988_Autumn_SC[df_1988_Autumn_SC['Origin'] == 'DFW']
+df_1988_Autumn_SC = df_1988_Autumn_SC[df_1988_Autumn_SC['Dest'] == 'DEN']
+print(df_1988_Autumn_SC)
+
+df_1988_Autumn_CS = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Autumn_CS = df_1988_Autumn_CS[(df_1988_Autumn_CS['Month'] >= 9) & (df_1988_Autumn_CS['Month'] <= 11)]
+df_1988_Autumn_CS = df_1988_Autumn_CS[df_1988_Autumn_CS['Origin'] == 'DEN']
+df_1988_Autumn_CS = df_1988_Autumn_CS[df_1988_Autumn_CS['Dest'] == 'DFW']
+print(df_1988_Autumn_CS)
+
+####Filter for 1988 Winter and filter for flights to/from LAX <-> JFK airport 
+df_1988_Winter_WE = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Winter_WE = df_1988_Winter_WE[(df_1988_Winter_WE['Month'] >= 12) | (df_1988_Winter_WE['Month'] <= 2)]
+df_1988_Winter_WE = df_1988_Winter_WE[df_1988_Winter_WE['Origin'] == 'LAX']
+df_1988_Winter_WE = df_1988_Winter_WE[df_1988_Winter_WE['Dest'] == 'JFK']
+print(df_1988_Winter_WE)
+
+df_1988_Winter_EW = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Winter_EW = df_1988_Winter_EW[(df_1988_Winter_EW['Month'] >= 12) | (df_1988_Winter_EW['Month'] <= 2)]
+df_1988_Winter_EW = df_1988_Winter_EW[df_1988_Winter_EW['Origin'] == 'JFK']
+df_1988_Winter_EW = df_1988_Winter_EW[df_1988_Winter_EW['Dest'] == 'LAX']
+print(df_1988_Winter_EW)
+
+####Filter for 1988 Winter and filter for flights to/from DFW <-> DEN airport 
+df_1988_Winter_SC = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Winter_SC = df_1988_Winter_SC[(df_1988_Winter_SC['Month'] >= 12) | (df_1988_Winter_SC['Month'] <= 2)]
+df_1988_Winter_SC = df_1988_Winter_SC[df_1988_Winter_SC['Origin'] == 'DFW']
+df_1988_Winter_SC = df_1988_Winter_SC[df_1988_Winter_SC['Dest'] == 'DEN']
+print(df_1988_Winter_SC)
+
+df_1988_Winter_CS = pd.DataFrame(data_1988, columns=['Month', 'Origin', 'Dest'])
+df_1988_Winter_CS = df_1988_Winter_CS[(df_1988_Winter_CS['Month'] >= 12) | (df_1988_Winter_CS['Month'] <= 2)]
+df_1988_Winter_CS = df_1988_Winter_CS[df_1988_Winter_CS['Origin'] == 'DEN']
+df_1988_Winter_CS = df_1988_Winter_CS[df_1988_Winter_CS['Dest'] == 'DFW']
+print(df_1988_Winter_CS)
+
+data_1989 = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\1989.csv.bz2')
+
+#Filter for 1989 Spring and filter for flights to/from LAX <-> JFK airport 
+df_1989_Spring_WE = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Spring_WE = df_1989_Spring_WE[(df_1989_Spring_WE['Month'] >= 3) & (df_1989_Spring_WE['Month'] <= 5)]
+df_1989_Spring_WE = df_1989_Spring_WE[df_1989_Spring_WE['Origin'] == 'LAX']
+df_1989_Spring_WE = df_1989_Spring_WE[df_1989_Spring_WE['Dest'] == 'JFK']
+print(df_1989_Spring_WE)
+
+df_1989_Spring_EW = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Spring_EW = df_1989_Spring_EW[(df_1989_Spring_EW['Month'] >= 3) & (df_1989_Spring_EW['Month'] <= 5)]
+df_1989_Spring_EW = df_1989_Spring_EW[df_1989_Spring_EW['Origin'] == 'JFK']
+df_1989_Spring_EW = df_1989_Spring_EW[df_1989_Spring_EW['Dest'] == 'LAX']
+print(df_1989_Spring_EW)
+
+#Filter for 1989 Spring and filter for flights to/from DFW <-> DEN airport 
+df_1989_Spring_SC = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Spring_SC = df_1989_Spring_SC[(df_1989_Spring_SC['Month'] >= 3) & (df_1989_Spring_SC['Month'] <= 5)]
+df_1989_Spring_SC = df_1989_Spring_SC[df_1989_Spring_SC['Origin'] == 'DFW']
+df_1989_Spring_SC = df_1989_Spring_SC[df_1989_Spring_SC['Dest'] == 'DEN']
+print(df_1989_Spring_SC)
+
+df_1989_Spring_CS = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Spring_CS = df_1989_Spring_CS[(df_1989_Spring_CS['Month'] >= 3) & (df_1989_Spring_CS['Month'] <= 5)]
+df_1989_Spring_CS = df_1989_Spring_CS[df_1989_Spring_CS['Origin'] == 'DEN']
+df_1989_Spring_CS = df_1989_Spring_CS[df_1989_Spring_CS['Dest'] == 'DFW']
+print(df_1989_Spring_CS)
+
+##Filter for 1989 Summer and filter for flights to/from LAX <-> JFK airport 
+df_1989_Summer_WE = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Summer_WE = df_1989_Summer_WE[(df_1989_Summer_WE['Month'] >= 6) & (df_1989_Summer_WE['Month'] <= 8)]
+df_1989_Summer_WE = df_1989_Summer_WE[df_1989_Summer_WE['Origin'] == 'LAX']
+df_1989_Summer_WE = df_1989_Summer_WE[df_1989_Summer_WE['Dest'] == 'JFK']
+print(df_1989_Summer_WE)
+
+df_1989_Summer_EW = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Summer_EW = df_1989_Summer_EW[(df_1989_Summer_EW['Month'] >= 6) & (df_1989_Summer_EW['Month'] <= 8)]
+df_1989_Summer_EW = df_1989_Summer_EW[df_1989_Summer_EW['Origin'] == 'JFK']
+df_1989_Summer_EW = df_1989_Summer_EW[df_1989_Summer_EW['Dest'] == 'LAX']
+print(df_1989_Summer_EW)
+
+##Filter for 1989 Summer and filter for flights to/from DFW <-> DEN airport 
+df_1989_Summer_SC = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Summer_SC = df_1989_Summer_SC[(df_1989_Summer_SC['Month'] >= 6) & (df_1989_Summer_SC['Month'] <= 8)]
+df_1989_Summer_SC = df_1989_Summer_SC[df_1989_Summer_SC['Origin'] == 'DFW']
+df_1989_Summer_SC = df_1989_Summer_SC[df_1989_Summer_SC['Dest'] == 'DEN']
+print(df_1989_Summer_SC)
+
+df_1989_Summer_CS = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Summer_CS = df_1989_Summer_CS[(df_1989_Summer_CS['Month'] >= 6) & (df_1989_Summer_CS['Month'] <= 8)]
+df_1989_Summer_CS = df_1989_Summer_CS[df_1989_Summer_CS['Origin'] == 'DEN']
+df_1989_Summer_CS = df_1989_Summer_CS[df_1989_Summer_CS['Dest'] == 'DFW']
+print(df_1989_Summer_CS)
+
+###Filter for 1989 Autumn and filter for flights to/from LAX <-> JFK airport 
+df_1989_Autumn_WE = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Autumn_WE = df_1989_Autumn_WE[(df_1989_Autumn_WE['Month'] >= 9) & (df_1989_Autumn_WE['Month'] <= 11)]
+df_1989_Autumn_WE = df_1989_Autumn_WE[df_1989_Autumn_WE['Origin'] == 'LAX']
+df_1989_Autumn_WE = df_1989_Autumn_WE[df_1989_Autumn_WE['Dest'] == 'JFK']
+print(df_1989_Autumn_WE)
+
+df_1989_Autumn_EW = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Autumn_EW = df_1989_Autumn_EW[(df_1989_Autumn_EW['Month'] >= 9) & (df_1989_Autumn_EW['Month'] <= 11)]
+df_1989_Autumn_EW = df_1989_Autumn_EW[df_1989_Autumn_EW['Origin'] == 'JFK']
+df_1989_Autumn_EW = df_1989_Autumn_EW[df_1989_Autumn_EW['Dest'] == 'LAX']
+print(df_1989_Autumn_EW)
+
+###Filter for 1989 Autumn and filter for flights to/from DFW <-> DEN airport 
+df_1989_Autumn_SC = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Autumn_SC = df_1989_Autumn_SC[(df_1989_Autumn_SC['Month'] >= 9) & (df_1989_Autumn_SC['Month'] <= 11)]
+df_1989_Autumn_SC = df_1989_Autumn_SC[df_1989_Autumn_SC['Origin'] == 'DFW']
+df_1989_Autumn_SC = df_1989_Autumn_SC[df_1989_Autumn_SC['Dest'] == 'DEN']
+print(df_1989_Autumn_SC)
+
+df_1989_Autumn_CS = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Autumn_CS = df_1989_Autumn_CS[(df_1989_Autumn_CS['Month'] >= 9) & (df_1989_Autumn_CS['Month'] <= 11)]
+df_1989_Autumn_CS = df_1989_Autumn_CS[df_1989_Autumn_CS['Origin'] == 'DEN']
+df_1989_Autumn_CS = df_1989_Autumn_CS[df_1989_Autumn_CS['Dest'] == 'DFW']
+print(df_1989_Autumn_CS)
+
+####Filter for 1989 Winter and filter for flights to/from LAX <-> JFK airport 
+df_1989_Winter_WE = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Winter_WE = df_1989_Winter_WE[(df_1989_Winter_WE['Month'] >= 12) | (df_1989_Winter_WE['Month'] <= 2)]
+df_1989_Winter_WE = df_1989_Winter_WE[df_1989_Winter_WE['Origin'] == 'LAX']
+df_1989_Winter_WE = df_1989_Winter_WE[df_1989_Winter_WE['Dest'] == 'JFK']
+print(df_1989_Winter_WE)
+
+df_1989_Winter_EW = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Winter_EW = df_1989_Winter_EW[(df_1989_Winter_EW['Month'] >= 12) | (df_1989_Winter_EW['Month'] <= 2)]
+df_1989_Winter_EW = df_1989_Winter_EW[df_1989_Winter_EW['Origin'] == 'JFK']
+df_1989_Winter_EW = df_1989_Winter_EW[df_1989_Winter_EW['Dest'] == 'LAX']
+print(df_1989_Winter_EW)
+
+####Filter for 1989 Winter and filter for flights to/from DFW <-> DEN airport 
+df_1989_Winter_SC = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Winter_SC = df_1989_Winter_SC[(df_1989_Winter_SC['Month'] >= 12) | (df_1989_Winter_SC['Month'] <= 2)]
+df_1989_Winter_SC = df_1989_Winter_SC[df_1989_Winter_SC['Origin'] == 'DFW']
+df_1989_Winter_SC = df_1989_Winter_SC[df_1989_Winter_SC['Dest'] == 'DEN']
+print(df_1989_Winter_SC)
+
+df_1989_Winter_CS = pd.DataFrame(data_1989, columns=['Month', 'Origin', 'Dest'])
+df_1989_Winter_CS = df_1989_Winter_CS[(df_1989_Winter_CS['Month'] >= 12) | (df_1989_Winter_CS['Month'] <= 2)]
+df_1989_Winter_CS = df_1989_Winter_CS[df_1989_Winter_CS['Origin'] == 'DEN']
+df_1989_Winter_CS = df_1989_Winter_CS[df_1989_Winter_CS['Dest'] == 'DFW']
+print(df_1989_Winter_CS)
+
+data_1990 = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\1990.csv.bz2')
+
+#Filter for 1990 Spring and filter for flights to/from LAX <-> JFK airport 
+df_1990_Spring_WE = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Spring_WE = df_1990_Spring_WE[(df_1990_Spring_WE['Month'] >= 3) & (df_1990_Spring_WE['Month'] <= 5)]
+df_1990_Spring_WE = df_1990_Spring_WE[df_1990_Spring_WE['Origin'] == 'LAX']
+df_1990_Spring_WE = df_1990_Spring_WE[df_1990_Spring_WE['Dest'] == 'JFK']
+print(df_1990_Spring_WE)
+
+df_1990_Spring_EW = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Spring_EW = df_1990_Spring_EW[(df_1990_Spring_EW['Month'] >= 3) & (df_1990_Spring_EW['Month'] <= 5)]
+df_1990_Spring_EW = df_1990_Spring_EW[df_1990_Spring_EW['Origin'] == 'JFK']
+df_1990_Spring_EW = df_1990_Spring_EW[df_1990_Spring_EW['Dest'] == 'LAX']
+print(df_1990_Spring_EW)
+
+#Filter for 1990 Spring and filter for flights to/from DFW <-> DEN airport 
+df_1990_Spring_SC = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Spring_SC = df_1990_Spring_SC[(df_1990_Spring_SC['Month'] >= 3) & (df_1990_Spring_SC['Month'] <= 5)]
+df_1990_Spring_SC = df_1990_Spring_SC[df_1990_Spring_SC['Origin'] == 'DFW']
+df_1990_Spring_SC = df_1990_Spring_SC[df_1990_Spring_SC['Dest'] == 'DEN']
+print(df_1990_Spring_SC)
+
+df_1990_Spring_CS = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Spring_CS = df_1990_Spring_CS[(df_1990_Spring_CS['Month'] >= 3) & (df_1990_Spring_CS['Month'] <= 5)]
+df_1990_Spring_CS = df_1990_Spring_CS[df_1990_Spring_CS['Origin'] == 'DEN']
+df_1990_Spring_CS = df_1990_Spring_CS[df_1990_Spring_CS['Dest'] == 'DFW']
+print(df_1990_Spring_CS)
+
+##Filter for 1990 Summer and filter for flights to/from LAX <-> JFK airport 
+df_1990_Summer_WE = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Summer_WE = df_1990_Summer_WE[(df_1990_Summer_WE['Month'] >= 6) & (df_1990_Summer_WE['Month'] <= 8)]
+df_1990_Summer_WE = df_1990_Summer_WE[df_1990_Summer_WE['Origin'] == 'LAX']
+df_1990_Summer_WE = df_1990_Summer_WE[df_1990_Summer_WE['Dest'] == 'JFK']
+print(df_1990_Summer_WE)
+
+df_1990_Summer_EW = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Summer_EW = df_1990_Summer_EW[(df_1990_Summer_EW['Month'] >= 6) & (df_1990_Summer_EW['Month'] <= 8)]
+df_1990_Summer_EW = df_1990_Summer_EW[df_1990_Summer_EW['Origin'] == 'JFK']
+df_1990_Summer_EW = df_1990_Summer_EW[df_1990_Summer_EW['Dest'] == 'LAX']
+print(df_1990_Summer_EW)
+
+##Filter for 1990 Summer and filter for flights to/from DFW <-> DEN airport 
+df_1990_Summer_SC = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Summer_SC = df_1990_Summer_SC[(df_1990_Summer_SC['Month'] >= 6) & (df_1990_Summer_SC['Month'] <= 8)]
+df_1990_Summer_SC = df_1990_Summer_SC[df_1990_Summer_SC['Origin'] == 'DFW']
+df_1990_Summer_SC = df_1990_Summer_SC[df_1990_Summer_SC['Dest'] == 'DEN']
+print(df_1990_Summer_SC)
+
+df_1990_Summer_CS = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Summer_CS = df_1990_Summer_CS[(df_1990_Summer_CS['Month'] >= 6) & (df_1990_Summer_CS['Month'] <= 8)]
+df_1990_Summer_CS = df_1990_Summer_CS[df_1990_Summer_CS['Origin'] == 'DEN']
+df_1990_Summer_CS = df_1990_Summer_CS[df_1990_Summer_CS['Dest'] == 'DFW']
+print(df_1990_Summer_CS)
+
+###Filter for 1990 Autumn and filter for flights to/from LAX <-> JFK airport 
+df_1990_Autumn_WE = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Autumn_WE = df_1990_Autumn_WE[(df_1990_Autumn_WE['Month'] >= 9) & (df_1990_Autumn_WE['Month'] <= 11)]
+df_1990_Autumn_WE = df_1990_Autumn_WE[df_1990_Autumn_WE['Origin'] == 'LAX']
+df_1990_Autumn_WE = df_1990_Autumn_WE[df_1990_Autumn_WE['Dest'] == 'JFK']
+print(df_1990_Autumn_WE)
+
+df_1990_Autumn_EW = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Autumn_EW = df_1990_Autumn_EW[(df_1990_Autumn_EW['Month'] >= 9) & (df_1990_Autumn_EW['Month'] <= 11)]
+df_1990_Autumn_EW = df_1990_Autumn_EW[df_1990_Autumn_EW['Origin'] == 'JFK']
+df_1990_Autumn_EW = df_1990_Autumn_EW[df_1990_Autumn_EW['Dest'] == 'LAX']
+print(df_1990_Autumn_EW)
+
+###Filter for 1990 Autumn and filter for flights to/from DFW <-> DEN airport 
+df_1990_Autumn_SC = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Autumn_SC = df_1990_Autumn_SC[(df_1990_Autumn_SC['Month'] >= 9) & (df_1990_Autumn_SC['Month'] <= 11)]
+df_1990_Autumn_SC = df_1990_Autumn_SC[df_1990_Autumn_SC['Origin'] == 'DFW']
+df_1990_Autumn_SC = df_1990_Autumn_SC[df_1990_Autumn_SC['Dest'] == 'DEN']
+print(df_1990_Autumn_SC)
+
+df_1990_Autumn_CS = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Autumn_CS = df_1990_Autumn_CS[(df_1990_Autumn_CS['Month'] >= 9) & (df_1990_Autumn_CS['Month'] <= 11)]
+df_1990_Autumn_CS = df_1990_Autumn_CS[df_1990_Autumn_CS['Origin'] == 'DEN']
+df_1990_Autumn_CS = df_1990_Autumn_CS[df_1990_Autumn_CS['Dest'] == 'DFW']
+print(df_1990_Autumn_CS)
+
+####Filter for 1990 Winter and filter for flights to/from LAX <-> JFK airport 
+df_1990_Winter_WE = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Winter_WE = df_1990_Winter_WE[(df_1990_Winter_WE['Month'] >= 12) | (df_1990_Winter_WE['Month'] <= 2)]
+df_1990_Winter_WE = df_1990_Winter_WE[df_1990_Winter_WE['Origin'] == 'LAX']
+df_1990_Winter_WE = df_1990_Winter_WE[df_1990_Winter_WE['Dest'] == 'JFK']
+print(df_1990_Winter_WE)
+
+df_1990_Winter_EW = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Winter_EW = df_1990_Winter_EW[(df_1990_Winter_EW['Month'] >= 12) | (df_1990_Winter_EW['Month'] <= 2)]
+df_1990_Winter_EW = df_1990_Winter_EW[df_1990_Winter_EW['Origin'] == 'JFK']
+df_1990_Winter_EW = df_1990_Winter_EW[df_1990_Winter_EW['Dest'] == 'LAX']
+print(df_1990_Winter_EW)
+
+####Filter for 1990 Winter and filter for flights to/from DFW <-> DEN airport 
+df_1990_Winter_SC = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Winter_SC = df_1990_Winter_SC[(df_1990_Winter_SC['Month'] >= 12) | (df_1990_Winter_SC['Month'] <= 2)]
+df_1990_Winter_SC = df_1990_Winter_SC[df_1990_Winter_SC['Origin'] == 'DFW']
+df_1990_Winter_SC = df_1990_Winter_SC[df_1990_Winter_SC['Dest'] == 'DEN']
+print(df_1990_Winter_SC)
+
+df_1990_Winter_CS = pd.DataFrame(data_1990, columns=['Month', 'Origin', 'Dest'])
+df_1990_Winter_CS = df_1990_Winter_CS[(df_1990_Winter_CS['Month'] >= 12) | (df_1990_Winter_CS['Month'] <= 2)]
+df_1990_Winter_CS = df_1990_Winter_CS[df_1990_Winter_CS['Origin'] == 'DEN']
+df_1990_Winter_CS = df_1990_Winter_CS[df_1990_Winter_CS['Dest'] == 'DFW']
+print(df_1990_Winter_CS)
+
+data_1991 = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\1991.csv.bz2')
+
+#Filter for 1991 Spring and filter for flights to/from LAX <-> JFK airport 
+df_1991_Spring_WE = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Spring_WE = df_1991_Spring_WE[(df_1991_Spring_WE['Month'] >= 3) & (df_1991_Spring_WE['Month'] <= 5)]
+df_1991_Spring_WE = df_1991_Spring_WE[df_1991_Spring_WE['Origin'] == 'LAX']
+df_1991_Spring_WE = df_1991_Spring_WE[df_1991_Spring_WE['Dest'] == 'JFK']
+print(df_1991_Spring_WE)
+
+df_1991_Spring_EW = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Spring_EW = df_1991_Spring_EW[(df_1991_Spring_EW['Month'] >= 3) & (df_1991_Spring_EW['Month'] <= 5)]
+df_1991_Spring_EW = df_1991_Spring_EW[df_1991_Spring_EW['Origin'] == 'JFK']
+df_1991_Spring_EW = df_1991_Spring_EW[df_1991_Spring_EW['Dest'] == 'LAX']
+print(df_1991_Spring_EW)
+
+#Filter for 1991 Spring and filter for flights to/from DFW <-> DEN airport 
+df_1991_Spring_SC = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Spring_SC = df_1991_Spring_SC[(df_1991_Spring_SC['Month'] >= 3) & (df_1991_Spring_SC['Month'] <= 5)]
+df_1991_Spring_SC = df_1991_Spring_SC[df_1991_Spring_SC['Origin'] == 'DFW']
+df_1991_Spring_SC = df_1991_Spring_SC[df_1991_Spring_SC['Dest'] == 'DEN']
+print(df_1991_Spring_SC)
+
+df_1991_Spring_CS = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Spring_CS = df_1991_Spring_CS[(df_1991_Spring_CS['Month'] >= 3) & (df_1991_Spring_CS['Month'] <= 5)]
+df_1991_Spring_CS = df_1991_Spring_CS[df_1991_Spring_CS['Origin'] == 'DEN']
+df_1991_Spring_CS = df_1991_Spring_CS[df_1991_Spring_CS['Dest'] == 'DFW']
+print(df_1991_Spring_CS)
+
+##Filter for 1991 Summer and filter for flights to/from LAX <-> JFK airport 
+df_1991_Summer_WE = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Summer_WE = df_1991_Summer_WE[(df_1991_Summer_WE['Month'] >= 6) & (df_1991_Summer_WE['Month'] <= 8)]
+df_1991_Summer_WE = df_1991_Summer_WE[df_1991_Summer_WE['Origin'] == 'LAX']
+df_1991_Summer_WE = df_1991_Summer_WE[df_1991_Summer_WE['Dest'] == 'JFK']
+print(df_1991_Summer_WE)
+
+df_1991_Summer_EW = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Summer_EW = df_1991_Summer_EW[(df_1991_Summer_EW['Month'] >= 6) & (df_1991_Summer_EW['Month'] <= 8)]
+df_1991_Summer_EW = df_1991_Summer_EW[df_1991_Summer_EW['Origin'] == 'JFK']
+df_1991_Summer_EW = df_1991_Summer_EW[df_1991_Summer_EW['Dest'] == 'LAX']
+print(df_1991_Summer_EW)
+
+##Filter for 1991 Summer and filter for flights to/from DFW <-> DEN airport 
+df_1991_Summer_SC = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Summer_SC = df_1991_Summer_SC[(df_1991_Summer_SC['Month'] >= 6) & (df_1991_Summer_SC['Month'] <= 8)]
+df_1991_Summer_SC = df_1991_Summer_SC[df_1991_Summer_SC['Origin'] == 'DFW']
+df_1991_Summer_SC = df_1991_Summer_SC[df_1991_Summer_SC['Dest'] == 'DEN']
+print(df_1991_Summer_SC)
+
+df_1991_Summer_CS = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Summer_CS = df_1991_Summer_CS[(df_1991_Summer_CS['Month'] >= 6) & (df_1991_Summer_CS['Month'] <= 8)]
+df_1991_Summer_CS = df_1991_Summer_CS[df_1991_Summer_CS['Origin'] == 'DEN']
+df_1991_Summer_CS = df_1991_Summer_CS[df_1991_Summer_CS['Dest'] == 'DFW']
+print(df_1991_Summer_CS)
+
+###Filter for 1991 Autumn and filter for flights to/from LAX <-> JFK airport 
+df_1991_Autumn_WE = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Autumn_WE = df_1991_Autumn_WE[(df_1991_Autumn_WE['Month'] >= 9) & (df_1991_Autumn_WE['Month'] <= 11)]
+df_1991_Autumn_WE = df_1991_Autumn_WE[df_1991_Autumn_WE['Origin'] == 'LAX']
+df_1991_Autumn_WE = df_1991_Autumn_WE[df_1991_Autumn_WE['Dest'] == 'JFK']
+print(df_1991_Autumn_WE)
+
+df_1991_Autumn_EW = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Autumn_EW = df_1991_Autumn_EW[(df_1991_Autumn_EW['Month'] >= 9) & (df_1991_Autumn_EW['Month'] <= 11)]
+df_1991_Autumn_EW = df_1991_Autumn_EW[df_1991_Autumn_EW['Origin'] == 'JFK']
+df_1991_Autumn_EW = df_1991_Autumn_EW[df_1991_Autumn_EW['Dest'] == 'LAX']
+print(df_1991_Autumn_EW)
+
+###Filter for 1991 Autumn and filter for flights to/from DFW <-> DEN airport 
+df_1991_Autumn_SC = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Autumn_SC = df_1991_Autumn_SC[(df_1991_Autumn_SC['Month'] >= 9) & (df_1991_Autumn_SC['Month'] <= 11)]
+df_1991_Autumn_SC = df_1991_Autumn_SC[df_1991_Autumn_SC['Origin'] == 'DFW']
+df_1991_Autumn_SC = df_1991_Autumn_SC[df_1991_Autumn_SC['Dest'] == 'DEN']
+print(df_1991_Autumn_SC)
+
+df_1991_Autumn_CS = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Autumn_CS = df_1991_Autumn_CS[(df_1991_Autumn_CS['Month'] >= 9) & (df_1991_Autumn_CS['Month'] <= 11)]
+df_1991_Autumn_CS = df_1991_Autumn_CS[df_1991_Autumn_CS['Origin'] == 'DEN']
+df_1991_Autumn_CS = df_1991_Autumn_CS[df_1991_Autumn_CS['Dest'] == 'DFW']
+print(df_1991_Autumn_CS)
+
+####Filter for 1991 Winter and filter for flights to/from LAX <-> JFK airport 
+df_1991_Winter_WE = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Winter_WE = df_1991_Winter_WE[(df_1991_Winter_WE['Month'] >= 12) | (df_1991_Winter_WE['Month'] <= 2)]
+df_1991_Winter_WE = df_1991_Winter_WE[df_1991_Winter_WE['Origin'] == 'LAX']
+df_1991_Winter_WE = df_1991_Winter_WE[df_1991_Winter_WE['Dest'] == 'JFK']
+print(df_1991_Winter_WE)
+
+df_1991_Winter_EW = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Winter_EW = df_1991_Winter_EW[(df_1991_Winter_EW['Month'] >= 12) | (df_1991_Winter_EW['Month'] <= 2)]
+df_1991_Winter_EW = df_1991_Winter_EW[df_1991_Winter_EW['Origin'] == 'JFK']
+df_1991_Winter_EW = df_1991_Winter_EW[df_1991_Winter_EW['Dest'] == 'LAX']
+print(df_1991_Winter_EW)
+
+####Filter for 1991 Winter and filter for flights to/from DFW <-> DEN airport 
+df_1991_Winter_SC = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Winter_SC = df_1991_Winter_SC[(df_1991_Winter_SC['Month'] >= 12) | (df_1991_Winter_SC['Month'] <= 2)]
+df_1991_Winter_SC = df_1991_Winter_SC[df_1991_Winter_SC['Origin'] == 'DFW']
+df_1991_Winter_SC = df_1991_Winter_SC[df_1991_Winter_SC['Dest'] == 'DEN']
+print(df_1991_Winter_SC)
+
+df_1991_Winter_CS = pd.DataFrame(data_1991, columns=['Month', 'Origin', 'Dest'])
+df_1991_Winter_CS = df_1991_Winter_CS[(df_1991_Winter_CS['Month'] >= 12) | (df_1991_Winter_CS['Month'] <= 2)]
+df_1991_Winter_CS = df_1991_Winter_CS[df_1991_Winter_CS['Origin'] == 'DEN']
+df_1991_Winter_CS = df_1991_Winter_CS[df_1991_Winter_CS['Dest'] == 'DFW']
+print(df_1991_Winter_CS)
+
+data_1992 = pd.read_csv(r'C:\Users\HOME\Desktop\2195 Programming Coursework\1992.csv.bz2')
+
+#Filter for 1992 Spring and filter for flights to/from LAX <-> JFK airport 
+df_1992_Spring_WE = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Spring_WE = df_1992_Spring_WE[(df_1992_Spring_WE['Month'] >= 3) & (df_1992_Spring_WE['Month'] <= 5)]
+df_1992_Spring_WE = df_1992_Spring_WE[df_1992_Spring_WE['Origin'] == 'LAX']
+df_1992_Spring_WE = df_1992_Spring_WE[df_1992_Spring_WE['Dest'] == 'JFK']
+print(df_1992_Spring_WE)
+
+df_1992_Spring_EW = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Spring_EW = df_1992_Spring_EW[(df_1992_Spring_EW['Month'] >= 3) & (df_1992_Spring_EW['Month'] <= 5)]
+df_1992_Spring_EW = df_1992_Spring_EW[df_1992_Spring_EW['Origin'] == 'JFK']
+df_1992_Spring_EW = df_1992_Spring_EW[df_1992_Spring_EW['Dest'] == 'LAX']
+print(df_1992_Spring_EW)
+
+#Filter for 1992 Spring and filter for flights to/from DFW <-> DEN airport 
+df_1992_Spring_SC = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Spring_SC = df_1992_Spring_SC[(df_1992_Spring_SC['Month'] >= 3) & (df_1992_Spring_SC['Month'] <= 5)]
+df_1992_Spring_SC = df_1992_Spring_SC[df_1992_Spring_SC['Origin'] == 'DFW']
+df_1992_Spring_SC = df_1992_Spring_SC[df_1992_Spring_SC['Dest'] == 'DEN']
+print(df_1992_Spring_SC)
+
+df_1992_Spring_CS = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Spring_CS = df_1992_Spring_CS[(df_1992_Spring_CS['Month'] >= 3) & (df_1992_Spring_CS['Month'] <= 5)]
+df_1992_Spring_CS = df_1992_Spring_CS[df_1992_Spring_CS['Origin'] == 'DEN']
+df_1992_Spring_CS = df_1992_Spring_CS[df_1992_Spring_CS['Dest'] == 'DFW']
+print(df_1992_Spring_CS)
+
+##Filter for 1992 Summer and filter for flights to/from LAX <-> JFK airport 
+df_1992_Summer_WE = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Summer_WE = df_1992_Summer_WE[(df_1992_Summer_WE['Month'] >= 6) & (df_1992_Summer_WE['Month'] <= 8)]
+df_1992_Summer_WE = df_1992_Summer_WE[df_1992_Summer_WE['Origin'] == 'LAX']
+df_1992_Summer_WE = df_1992_Summer_WE[df_1992_Summer_WE['Dest'] == 'JFK']
+print(df_1992_Summer_WE)
+
+df_1992_Summer_EW = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Summer_EW = df_1992_Summer_EW[(df_1992_Summer_EW['Month'] >= 6) & (df_1992_Summer_EW['Month'] <= 8)]
+df_1992_Summer_EW = df_1992_Summer_EW[df_1992_Summer_EW['Origin'] == 'JFK']
+df_1992_Summer_EW = df_1992_Summer_EW[df_1992_Summer_EW['Dest'] == 'LAX']
+print(df_1992_Summer_EW)
+
+##Filter for 1992 Summer and filter for flights to/from DFW <-> DEN airport 
+df_1992_Summer_SC = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Summer_SC = df_1992_Summer_SC[(df_1992_Summer_SC['Month'] >= 6) & (df_1992_Summer_SC['Month'] <= 8)]
+df_1992_Summer_SC = df_1992_Summer_SC[df_1992_Summer_SC['Origin'] == 'DFW']
+df_1992_Summer_SC = df_1992_Summer_SC[df_1992_Summer_SC['Dest'] == 'DEN']
+print(df_1992_Summer_SC)
+
+df_1992_Summer_CS = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Summer_CS = df_1992_Summer_CS[(df_1992_Summer_CS['Month'] >= 6) & (df_1992_Summer_CS['Month'] <= 8)]
+df_1992_Summer_CS = df_1992_Summer_CS[df_1992_Summer_CS['Origin'] == 'DEN']
+df_1992_Summer_CS = df_1992_Summer_CS[df_1992_Summer_CS['Dest'] == 'DFW']
+print(df_1992_Summer_CS)
+
+###Filter for 1992 Autumn and filter for flights to/from LAX <-> JFK airport 
+df_1992_Autumn_WE = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Autumn_WE = df_1992_Autumn_WE[(df_1992_Autumn_WE['Month'] >= 9) & (df_1992_Autumn_WE['Month'] <= 11)]
+df_1992_Autumn_WE = df_1992_Autumn_WE[df_1992_Autumn_WE['Origin'] == 'LAX']
+df_1992_Autumn_WE = df_1992_Autumn_WE[df_1992_Autumn_WE['Dest'] == 'JFK']
+print(df_1992_Autumn_WE)
+
+df_1992_Autumn_EW = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Autumn_EW = df_1992_Autumn_EW[(df_1992_Autumn_EW['Month'] >= 9) & (df_1992_Autumn_EW['Month'] <= 11)]
+df_1992_Autumn_EW = df_1992_Autumn_EW[df_1992_Autumn_EW['Origin'] == 'JFK']
+df_1992_Autumn_EW = df_1992_Autumn_EW[df_1992_Autumn_EW['Dest'] == 'LAX']
+print(df_1992_Autumn_EW)
+
+###Filter for 1992 Autumn and filter for flights to/from DFW <-> DEN airport 
+df_1992_Autumn_SC = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Autumn_SC = df_1992_Autumn_SC[(df_1992_Autumn_SC['Month'] >= 9) & (df_1992_Autumn_SC['Month'] <= 11)]
+df_1992_Autumn_SC = df_1992_Autumn_SC[df_1992_Autumn_SC['Origin'] == 'DFW']
+df_1992_Autumn_SC = df_1992_Autumn_SC[df_1992_Autumn_SC['Dest'] == 'DEN']
+print(df_1992_Autumn_SC)
+
+df_1992_Autumn_CS = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Autumn_CS = df_1992_Autumn_CS[(df_1992_Autumn_CS['Month'] >= 9) & (df_1992_Autumn_CS['Month'] <= 11)]
+df_1992_Autumn_CS = df_1992_Autumn_CS[df_1992_Autumn_CS['Origin'] == 'DEN']
+df_1992_Autumn_CS = df_1992_Autumn_CS[df_1992_Autumn_CS['Dest'] == 'DFW']
+print(df_1992_Autumn_CS)
+
+####Filter for 1992 Winter and filter for flights to/from LAX <-> JFK airport 
+df_1992_Winter_WE = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Winter_WE = df_1992_Winter_WE[(df_1992_Winter_WE['Month'] >= 12) | (df_1992_Winter_WE['Month'] <= 2)]
+df_1992_Winter_WE = df_1992_Winter_WE[df_1992_Winter_WE['Origin'] == 'LAX']
+df_1992_Winter_WE = df_1992_Winter_WE[df_1992_Winter_WE['Dest'] == 'JFK']
+print(df_1992_Winter_WE)
+
+df_1992_Winter_EW = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Winter_EW = df_1992_Winter_EW[(df_1992_Winter_EW['Month'] >= 12) | (df_1992_Winter_EW['Month'] <= 2)]
+df_1992_Winter_EW = df_1992_Winter_EW[df_1992_Winter_EW['Origin'] == 'JFK']
+df_1992_Winter_EW = df_1992_Winter_EW[df_1992_Winter_EW['Dest'] == 'LAX']
+print(df_1992_Winter_EW)
+
+####Filter for 1992 Winter and filter for flights to/from DFW <-> DEN airport 
+df_1992_Winter_SC = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Winter_SC = df_1992_Winter_SC[(df_1992_Winter_SC['Month'] >= 12) | (df_1992_Winter_SC['Month'] <= 2)]
+df_1992_Winter_SC = df_1992_Winter_SC[df_1992_Winter_SC['Origin'] == 'DFW']
+df_1992_Winter_SC = df_1992_Winter_SC[df_1992_Winter_SC['Dest'] == 'DEN']
+print(df_1992_Winter_SC)
+
+df_1992_Winter_CS = pd.DataFrame(data_1992, columns=['Month', 'Origin', 'Dest'])
+df_1992_Winter_CS = df_1992_Winter_CS[(df_1992_Winter_CS['Month'] >= 12) | (df_1992_Winter_CS['Month'] <= 2)]
+df_1992_Winter_CS = df_1992_Winter_CS[df_1992_Winter_CS['Origin'] == 'DEN']
+df_1992_Winter_CS = df_1992_Winter_CS[df_1992_Winter_CS['Dest'] == 'DFW']
+print(df_1992_Winter_CS)
